@@ -4,6 +4,8 @@ import com.mybank.credit_module.model.Loan;
 import com.mybank.credit_module.model.LoanInstallment;
 import com.mybank.credit_module.repository.InstallmentRepository;
 import com.mybank.credit_module.service.InstallmentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class InstallmentServiceImpl implements InstallmentService {
+    private static final Logger log = LoggerFactory.getLogger(InstallmentServiceImpl.class);
     private final InstallmentRepository installmentRepository;
 
     //@Value("{service.installment.count.pay.inadvance}")
@@ -29,9 +32,7 @@ public class InstallmentServiceImpl implements InstallmentService {
 
     @Override
     public void createInstallments(Loan loan) {
-// TODO: 1/15/2025 saveAndFlush method of repository?
         List<LoanInstallment> installments = initiateInstallments(loan);
-        System.out.println("installments :" + installments);
         installmentRepository.saveAll(installments);
 
     }

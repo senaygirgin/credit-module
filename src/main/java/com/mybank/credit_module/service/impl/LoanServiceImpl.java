@@ -7,6 +7,8 @@ import com.mybank.credit_module.model.Loan;
 import com.mybank.credit_module.repository.LoanRepository;
 import com.mybank.credit_module.service.LoanService;
 import com.mybank.credit_module.controller.web.dto.LoanRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @Service
 @Transactional
 public class LoanServiceImpl implements LoanService {
+    private static final Logger log = LoggerFactory.getLogger(LoanServiceImpl.class);
 
     private final LoanRepository loanRepository;
 
@@ -26,7 +29,6 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public Loan createLoan(LoanRequest loanRequest, Customer customer) {
         Loan loan = initializeLoan(loanRequest, customer);
-        System.out.println("loan before db:" + loan);
         return loanRepository.save(loan);
     }
 

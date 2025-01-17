@@ -5,6 +5,8 @@ import com.mybank.credit_module.controller.error.ErrorEnum;
 import com.mybank.credit_module.model.Customer;
 import com.mybank.credit_module.repository.CustomerRepository;
 import com.mybank.credit_module.service.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ import java.util.Optional;
 @Service
 @Transactional
 public class CustomerServiceImpl implements CustomerService {
+    private static final Logger log = LoggerFactory.getLogger(CustomerServiceImpl.class);
 
     private final CustomerRepository customerRepository;
 

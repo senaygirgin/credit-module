@@ -56,6 +56,7 @@ public class CreditModuleController {
 
     @GetMapping("/listLoans")
     public ResponseEntity<Object> listLoans(@RequestParam long customerId) {
+        log.debug("listLoans request received");
 
         List<Loan> loans = loanService.getLoanByCustomerId(customerId);
         return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, loans);
@@ -64,6 +65,7 @@ public class CreditModuleController {
 
     @RequestMapping("/listInstallments")
     public ResponseEntity<Object> listInstallments(@RequestParam long loanId) {
+        log.debug("listInstallments request received");
         List<LoanInstallment> installments = installmentService.getInstallmentsByLoanId(loanId);
         return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, installments);
     }
@@ -72,6 +74,7 @@ public class CreditModuleController {
     @PutMapping("/payLoan")
     @Transactional
     public ResponseEntity<Object> payLoan(@RequestParam long loanId, @RequestParam double amount) {
+        log.debug("payLoan request received");
         List<LoanInstallment> payedInstallments = installmentService.payInstallments(loanId, amount);
 
         if(!payedInstallments.isEmpty()){

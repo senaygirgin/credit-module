@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "936b1ca2-f7f1-4cad-b131-28c0fa244527",
+		"name": "credit-module-v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23730474"
+	},
+	"item": [
+		{
+			"name": "createLoan",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"customerId\": \"2\",\r\n  \"amount\": \"100\",\r\n  \"interestRate\": \"0.25\",\r\n  \"numOfInstallments\": \"6\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/cm/createLoan",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cm",
+						"createLoan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listLoan",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "user",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cm/listLoans?customerId=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cm",
+						"listLoans"
+					],
+					"query": [
+						{
+							"key": "customerId",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listInstallments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cm/listInstallments?loanId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cm",
+						"listInstallments"
+					],
+					"query": [
+						{
+							"key": "loanId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payLoan",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/cm/payLoan?loanId=1&amount=25",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cm",
+						"payLoan"
+					],
+					"query": [
+						{
+							"key": "loanId",
+							"value": "1"
+						},
+						{
+							"key": "amount",
+							"value": "25"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
